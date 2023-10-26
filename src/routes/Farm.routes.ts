@@ -1,10 +1,8 @@
-import express, { Request, Response } from "express";
-import { createFarm } from "../controllers/Farm.controller";
+import express from "express";
+import { createFarm, getAllFarms } from "../controllers/Farm.controller";
 
 export const FarmRouter = express.Router();
 
-FarmRouter.get("/", (_req: Request, res: Response) => {
-  res.send("Feteching all Farms");
-});
+FarmRouter.get("/", getAllFarms);
 
 FarmRouter.post("/", createFarm);
