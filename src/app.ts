@@ -9,7 +9,7 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 
-app.get("/ping", (req: Request, res: Response) => {
+app.get("/ping", (_req: Request, res: Response) => {
   console.log("Someone pinged here!!");
   res.send("pong");
 });
