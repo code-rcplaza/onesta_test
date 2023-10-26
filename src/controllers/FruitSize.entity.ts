@@ -6,13 +6,14 @@ import {
   findFruitSize,
   insertFruitSize,
 } from "../services/FruitSize.service";
+import { handleHttpError } from "../utils/httpErrorhandler.util";
 
 export const getAllFruitSize = async (_req: Request, res: Response) => {
   try {
     const fruitSizes: FruitSize[] = await findAllFruitSizes();
     res.send(fruitSizes);
   } catch (error) {
-    console.error(error);
+    handleHttpError(res, "ERROR_GETTING_FRUITSIZES");
   }
 };
 
@@ -23,7 +24,7 @@ export const getFruitSize = async (req: Request, res: Response) => {
 
     res.send(fruit);
   } catch (error) {
-    console.log(error);
+    handleHttpError(res, "ERROR_GETTING_FRUIT");
   }
 };
 
@@ -34,7 +35,7 @@ export const createFruitSize = async (req: Request, res: Response) => {
     const fruit = await findFruit(fruitID);
 
     if (!fruit) {
-      res.status(404).send("Fruit not found");
+      handleHttpError(res, "FRUIT_NOT_FOUND");
       return;
     }
 
@@ -45,6 +46,6 @@ export const createFruitSize = async (req: Request, res: Response) => {
     const successfulCreation = await insertFruitSize(fruitSize);
     res.send(successfulCreation);
   } catch (error) {
-    console.error(error);
+    handleHttpError(res, "ERROR_CREATING_FRUIT");
   }
 };

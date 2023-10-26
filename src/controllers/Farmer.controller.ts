@@ -5,13 +5,14 @@ import {
   findFarmer,
   insertFarmer,
 } from "../services/Farmer.service";
+import { handleHttpError } from "../utils/httpErrorhandler.util";
 
 export const getAllFarmers = async (_req: Request, res: Response) => {
   try {
     const farmers: Farmer[] = await findAllFarmers();
     res.send(farmers);
   } catch (error) {
-    console.error(error);
+    handleHttpError(res, "ERROR_GET_FARMERS");
   }
 };
 
@@ -22,7 +23,7 @@ export const getFarmer = async (req: Request, res: Response) => {
 
     res.send(farmer);
   } catch (error) {
-    console.log(error);
+    handleHttpError(res, "ERROR_GET_FARMER");
   }
 };
 
@@ -37,6 +38,6 @@ export const createFarmer = async (req: Request, res: Response) => {
     const successfulCreation = await insertFarmer(farmer);
     res.send(successfulCreation);
   } catch (error) {
-    console.error(error);
+    handleHttpError(res, "ERROR_CREATE_FARMER");
   }
 };

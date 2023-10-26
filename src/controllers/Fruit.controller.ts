@@ -5,13 +5,14 @@ import {
   findFruit,
   insertFruit,
 } from "../services/Fruit.service";
+import { handleHttpError } from "../utils/httpErrorhandler.util";
 
 export const getAllFruits = async (_req: Request, res: Response) => {
   try {
     const fruits: Fruit[] = await findAllFruits();
     res.send(fruits);
   } catch (error) {
-    console.error(error);
+    handleHttpError(res, "ERROR_GETTING_ALL_FRUITS");
   }
 };
 
@@ -22,7 +23,7 @@ export const getFruit = async (req: Request, res: Response) => {
 
     res.send(fruit);
   } catch (error) {
-    console.log(error);
+    handleHttpError(res, "ERROR_GETTING_FRUIT");
   }
 };
 
@@ -37,6 +38,6 @@ export const createFruit = async (req: Request, res: Response) => {
     const successfulCreation = await insertFruit(fruit);
     res.send(successfulCreation);
   } catch (error) {
-    console.error(error);
+    handleHttpError(res, "ERROR_CREATING_FRUIT");
   }
 };
