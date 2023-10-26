@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Farm } from "../entities";
-import { findAllFarms, findFarmer, insertFarm } from "../services";
+import { findAllFarms, insertFarm } from "../services/Farm.service";
+import { findFarmer } from "../services/Farmer.service";
 
 export const getAllFarms = async (_req: Request, res: Response) => {
   try {
