@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Farmer } from "../entities";
-import { findAllFarmers, insertFarmer } from "../services";
+import { findAllFarmers, findFarmer, insertFarmer } from "../services";
 
 export const getAllFarmers = async (_req: Request, res: Response) => {
   try {
@@ -8,6 +8,17 @@ export const getAllFarmers = async (_req: Request, res: Response) => {
     res.send(farmers);
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const getFarmer = async (req: Request, res: Response) => {
+  try {
+    const id = parseInt(req.params.id);
+    const farmer = await findFarmer(id);
+
+    res.send(farmer);
+  } catch (error) {
+    console.log(error);
   }
 };
 
