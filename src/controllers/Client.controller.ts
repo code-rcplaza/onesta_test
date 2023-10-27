@@ -5,6 +5,7 @@ import {
   findClient,
   insertClient,
 } from "../services/Client.service";
+import { findFarmer } from "../services/Farmer.service";
 import { handleHttpError } from "../utils/httpErrorhandler.util";
 
 export const getAllClients = async (_req: Request, res: Response) => {
@@ -29,7 +30,14 @@ export const getClient = async (req: Request, res: Response) => {
 
 export const createClient = async (req: Request, res: Response) => {
   try {
-    const { name, lastname, email } = req.body;
+    const { name, lastname, email, farmerID } = req.body;
+
+    const farmer = await findFarmer(farmerID);
+
+    if (!farmer) {
+      handleHttpError(res, "ERROR_FARMER_NOT_FOUND");
+      return;
+    }
 
     const client = new Client();
 
