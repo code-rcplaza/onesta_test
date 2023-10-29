@@ -19,5 +19,5 @@ app.use(express.json());
 app.use("/api/farmers", FarmerRouter);
 app.use("/api/farms", FarmRouter);
 app.use("/api/fruits", FruitRouter);
-app.use("/api/fruitSize", FruitSizeRouter);
+app.use("/api/fruitSizes", FruitSizeRouter);
 app.use("/api/clients", ClientRouter);

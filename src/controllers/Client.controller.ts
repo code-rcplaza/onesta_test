@@ -44,6 +44,7 @@ export const createClient = async (req: Request, res: Response) => {
     client.name = name;
     client.lastname = lastname;
     client.email = email;
+    client.farmers = [farmer];
 
     const successfulCreation = await insertClient(client);
     res.send(successfulCreation);
