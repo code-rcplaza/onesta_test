@@ -12,7 +12,7 @@ export class StorageHistory extends BaseEntity {
   id: number;
 
   @Column({ unique: true })
-  filename: string;
+  fileName: string;
 
   @CreateDateColumn()
   createdAt: Date;

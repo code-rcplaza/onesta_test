@@ -1,16 +1,17 @@
 import { Request } from "express";
 import multer, { diskStorage } from "multer";
+import { generateFilenameWithDate } from "../utils/File.uitl";
 
 const PATH_STORAGE = `${process.cwd()}/storage`;
 
 const storage = diskStorage({
-  destination(_req: Request, _file: Express.Multer.File, callback: any) {
-    callback(null, PATH_STORAGE);
+  destination(_req: Request, _file: Express.Multer.File, cb: any) {
+    cb(null, PATH_STORAGE);
   },
-  filename(_req: Request, file: Express.Multer.File, callback: any) {
+  filename(_req: Request, file: Express.Multer.File, cb: any) {
     const ext = file.originalname.split(".").pop();
-    const fileNameRandom = `cosechas.${ext}`;
-    callback(null, fileNameRandom);
+    const fileNameWithDate = generateFilenameWithDate(`cosechas.${ext}`);
+    cb(null, fileNameWithDate);
   },
 });
 
