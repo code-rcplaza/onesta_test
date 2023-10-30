@@ -6,14 +6,8 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from "typeorm";
+import { Size } from "../types";
 import { Fruit } from "./Fruit.entity";
-
-export enum Size {
-  small = "small",
-  medium = "medium",
-  large = "large",
-  extraLarge = "extra large",
-}
 
 @Entity()
 @Unique(["size", "fruit"])

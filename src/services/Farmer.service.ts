@@ -11,6 +11,6 @@ export const findFarmer = async (id: number) => {
 };
 
 export const insertFarmer = async (farmer: Farmer) => {
-  const responseInsert = farmer.save();
+  const responseInsert = await farmer.save();
   return responseInsert;
 };

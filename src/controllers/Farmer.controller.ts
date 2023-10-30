@@ -33,7 +33,7 @@ export const createFarmer = async (req: Request, res: Response) => {
     const farmer = new Farmer();
     farmer.name = name;
     farmer.lastname = lastname;
-    farmer.email = email;
+    farmer.mail = email;
 
     const successfulCreation = await insertFarmer(farmer);
     res.send(successfulCreation);

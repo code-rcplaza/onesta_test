@@ -16,13 +16,13 @@ export class Farmer extends BaseEntity {
   id: number;
 
   @Column({ unique: true })
-  email: string;
+  mail: string;
 
   @Column()
   name: string;
 
   @Column()
-  lastname: number;
+  lastname: string;
 
   @OneToMany(() => Farm, (farm) => farm.farmer)
   farms: Farm[];

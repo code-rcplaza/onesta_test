@@ -13,13 +13,13 @@ export class Client extends BaseEntity {
   id: number;
 
   @Column({ unique: true })
-  email: string;
+  mail: string;
 
   @Column()
   name: string;
 
   @Column()
-  lastname: number;
+  lastname: string;
 
   @ManyToMany(() => Farmer, (farmer) => farmer.clients)
   farmers: Farmer[];
